@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Consortium Screens</title>
+<!-- Corrige l'erreur YouTube 153 ("Video player configuration error") :
+     YouTube exige desormais un en-tete Referer/identification client valide.
+     L'origine nui:// du DUI FiveM n'en envoie pas par defaut ; cette
+     politique force le navigateur a transmettre au moins l'origine. -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="loading" class="state-layer">
+            <div class="spinner"></div>
+        </div>
+        <div id="error" class="state-layer hidden">
+            <div class="error-icon">!</div>
+            <div class="error-text">Contenu indisponible</div>
+            <div class="error-reason" id="error-reason"></div>
+        </div>
+
+        <div id="content-root"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

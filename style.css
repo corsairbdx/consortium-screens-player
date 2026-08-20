@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    /* Magenta volontairement voyant : un fond noir serait indiscernable
+       d'un ecran "eteint", rendant impossible de diagnostiquer visuellement
+       si le DUI est actif mais que le contenu ne charge pas. Des que le
+       contenu (video/iframe/image) se charge, il recouvre entierement
+       cette couleur. Si l'ecran reste magenta, le probleme vient du
+       chargement du contenu (reseau, URL invalide...), pas du DUI/texture. */
+    background: #ff00ff;
+    overflow: hidden;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+#app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #ff00ff;
+}
+
+.state-layer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #ff00ff;
+    z-index: 5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.spinner {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.15);
+    border-top-color: #3aa1ff;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.error-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e74c3c;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.error-text {
+    color: #cfcfcf;
+    font-size: 14px;
+}
+
+.error-reason {
+    color: #ffb3b3;
+    font-size: 10px;
+    margin-top: 8px;
+    max-width: 90%;
+    text-align: center;
+    word-break: break-word;
+    font-family: monospace;
+}
+
+#content-root {
+    width: 100%;
+    height: 100%;
+}
+
+#content-root video,
+#content-root iframe,
+#content-root img {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+    display: block;
+    background: #000;
+}

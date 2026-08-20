@@ -197,13 +197,23 @@
                     onReady: function (e) {
                         reportDebug('YT.Player onReady OK pour videoId=' + videoId);
                         showLoading(false);
-                        e.target.setVolume(Math.max(0, Math.min(100, params.volume || 0)));
-                        e.target.unMute();
+
+                        // IMPORTANT : demarrer la lecture PENDANT que le
+                        // lecteur est encore mute, puis desactiver le mute
+                        // apres coup. Faire l'inverse (unMute avant
+                        // playVideo) redeclenche le blocage autoplay du
+                        // navigateur, car playVideo() est alors appele sur
+                        // un lecteur deja non-mute.
                         if (params.paused) {
                             e.target.pauseVideo();
                         } else if (params.autoplay) {
                             e.target.playVideo();
                         }
+
+                        setTimeout(function () {
+                            e.target.setVolume(Math.max(0, Math.min(100, params.volume || 0)));
+                            e.target.unMute();
+                        }, 300);
                     },
                     onError: function (e) {
                         var code = e && e.data;

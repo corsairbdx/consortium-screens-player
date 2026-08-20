@@ -8,7 +8,7 @@
      L'origine nui:// du DUI FiveM n'en envoie pas par defaut ; cette
      politique force le navigateur a transmettre au moins l'origine. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
     <div id="app">
@@ -24,6 +24,11 @@
         <div id="content-root"></div>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Le parametre ?v=N force le navigateur (CEF/DUI) a recharger le
+         fichier au lieu de servir une version mise en cache : incrementez
+         cette valeur a chaque fois que app.js est modifie sur l'hebergement
+         externe (GitHub Pages), sinon les clients continueront de charger
+         l'ancienne version en cache. -->
+    <script src="app.js?v=2"></script>
 </body>
 </html>
